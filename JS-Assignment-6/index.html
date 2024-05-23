@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>JS Third Assignment</title>
+</head>
+<body>
+    <h1>JS Assignment: Creating Tabs</h1>
+
+    <div class="container">
+        <button class="tabs" onclick="showTabcContent(event, 'tab-1')">Assignment 1</button>
+        <button class="tabs" onclick="showTabcContent(event, 'tab-2')">Assignment 2</button>
+        <button class="tabs" onclick="showTabcContent(event, 'tab-3')">Assignment 3</button>
+
+        <div id="tab-1" class="content">
+            <h2>Table of 2</h2>
+            <button onclick="showTable_1()">Print Table</button>
+        </div>
+        <div id="tab-2" class="content">
+            <h2>Table of any user-defiend number</h2>
+            <label for="digit">Enter the digit</label>
+            <input type="text" name="digit" id="digit"><br>
+            <label for="count">Length</label>
+            <input type="text" name="count" id="count"><br>
+            <button onclick="showTable_2()">Print Table</button>
+        </div>
+        <div id="tab-3" class="content">
+            <h2>This one is right here! :)</h2> 
+        </div>
+    </div>
+
+
+    <script>
+        function showTabcContent(curr, nthTab) {
+
+            //Declaring and Initializing variables
+            let content = document.getElementsByClassName("content");       //Variable content holds all tabs content
+            let tabs = document.getElementsByClassName("tabs");             //Variable tabs holds all tab buttons
+            
+            
+            //loop to hide tab content
+            for (let i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+            }
+            
+            
+            //loop to remove active class
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+
+            //Display the tab content and add 'active' class to current button            
+            document.getElementById(nthTab).style.display = "block";
+            curr.currentTarget.className += " active";
+        }
+
+        function showTable_1() {
+            let table = "";
+            for (let num = 1; num <= 10; num++) {
+                table += `2 x ${num} = ${2 * num}</br>`;
+            }
+            
+            const tab1 = document.getElementById("tab-1");
+            tab1.innerHTML = table;
+
+        }
+
+        function showTable_2() {
+            let getDigit = document.getElementById("digit").value;
+            let getCount = document.getElementById("count").value;
+            
+            let table = "";
+            for (let count = 1; count <= getCount ; count++) {
+                table += `${getDigit} x ${count} = ${getDigit * count}</br>`;
+            }
+            
+            const tab = document.getElementById("tab-2");
+            tab.innerHTML = table;
+        }
+    </script>
+</body>
+</html>  
